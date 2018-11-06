@@ -1,0 +1,47 @@
+﻿
+@using Onion.RazorUI.ViewModels
+@model IEnumerable<PersonViewModel>
+
+<h2>Configure Persons</h2>
+
+<div>
+    <h4>Persons List test</h4>
+    <hr />
+
+    <div class="areablock">
+        <input class="btn" type="button" value="Add" onclick="location.href='@Url.Action("Create","Person")'" />
+    </div>
+
+        <div>
+            <table class="table table-bordered table-responsive">
+                <thead>
+                    <tr>
+                        <th class="col-sm-2">First Name</th>
+                        <th class="col-sm-2">Last Name</th>
+                        <th class="col-sm-2">Father Name</th>
+                        <th class="col-sm-2">Phone</th>
+                        <th class="col-sm-2">Email</th>
+                        <th class="col-sm-4"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (PersonViewModel person in Model)
+                    {
+                    <tr>
+                        <td class="col-sm-2">@person.firstname</td>
+                        <td class="col-sm-2">@person.lastname</td>
+                        <td class="col-sm-2">@person.fathername</td>
+                        <td class="col-sm-2">@person.phone</td>
+                        <td class="col-sm-2">@person.email</td>
+                        <td class="col-sm-4">
+                            @Html.ActionLink("Update", "Update", new { id = person.id }) |
+                            <span onclick="return confirm('Are you sure to delete?')">
+                                @Html.ActionLink("Delete", "Delete", new { id = person.id })
+                            </span>
+                        </td>
+                    </tr>
+                    }
+                <tbody>
+            </table>
+        </div>
+    </div>
